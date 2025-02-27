@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    api:
+        build: .
+        ports:
+            - "5000:5000"
+            - "5001:5001"
+        depends_on:
+            - db
+        environment:
+            DB_CONNECTION_STRING: "Server=localhost;Port=3306;Database=FoodDeliveryDb;User=root;Password=root;"
+
+    db:
+        image: "mysql:8.0"
+        container_name: food_delivery_db
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD: "root"
+            - MYSQL_DATABASE: "FoodDeliveryDb"
+        ports:
+            - "3306:3306"
+
+    maildev:
+        image: maildev/maildev
+        ports:
+        - "1080:80"  # Web UI for viewing emails
+        - "1025:25"  # SMTP server
