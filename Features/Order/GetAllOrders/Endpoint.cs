@@ -7,17 +7,16 @@ public class Endpoint : ICarterModule
     {
         app.MapGet(
             "/orders", 
-            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async (ISender sender) => {
-                return Results.Ok();
-            })
-            .WithName("GetAllOrders")
-            .WithTags("Order")
-            .WithOpenApi(operation => new(operation) {
-                Summary = "Get all orders",
-                OperationId = "GetAllOrders",
-                // Description = "Allows the user to cancel an order before the set time of 15 mins expires"
-            })
-            .Produces(StatusCodes.Status400BadRequest)
-            .Produces(StatusCodes.Status200OK);
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]  
+            async (ISender sender, int page = 1, int pageSize = 10) => {
+                return Results.Ok(await sender.Send(new Query {Page = page, PageSize = pageSize}));
+            }
+        )
+        .WithName("GetAllOrders")
+        .WithTags("Order")
+        .WithOpenApi(operation => new(operation) {
+            Summary = "Get all orders",
+            OperationId = "GetAllOrders",
+        });
     }
 }

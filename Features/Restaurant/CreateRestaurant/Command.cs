@@ -22,7 +22,7 @@ public class CommandHandler : IRequestHandler<Command, BaseResponse>
             Name = requestData.Name,
             Latitude = requestData.Latitude,
             Longitude = requestData.Longitude,
-            isEngaged = false
+            IsLockedUntil = null
         };
 
         _context.Restaurants.Add(restaurant);

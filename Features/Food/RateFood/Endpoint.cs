@@ -1,4 +1,7 @@
 
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+
 namespace FoodDelivery.Features.Food.RateFood;
 
 public class Endpoint : ICarterModule
@@ -7,9 +10,18 @@ public class Endpoint : ICarterModule
     {
         app.MapPost(
             "/foods/{id}/rate", 
-            // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
-            async (ISender sender, int id) => {
-                return Results.Ok();
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            async (ISender sender, IValidator<RateFoodDTO> validator, int id, [FromBody] RateFoodDTO requestData) => {
+                var validationResult = validator.Validate(requestData);
+                if (validationResult.IsValid) {
+                    return Results.Ok(await sender.Send(new Command{requestData = requestData, FoodId = id}));
+                }
+
+                return Results.BadRequest(new BaseResponse {
+                    ValidationErrors = validationResult.Errors.Select(e => e.ErrorMessage),
+                    Status = false,
+                    Message = "Failed to add rating"
+                });
             }
         )
         .WithName("RateFood")

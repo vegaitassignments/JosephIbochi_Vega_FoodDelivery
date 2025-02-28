@@ -20,6 +20,7 @@ public class QueryHandler : IRequestHandler<Query, BaseResponse>
             .FirstOrDefaultAsync(f => f.Id == request.foodId) ?? throw new FoodDeliveryNotFoundException("Food not found");
 
         var foodDTO = new FoodDTO(
+            food.Id,
             food.Name,
             food.Price,
             food.ImageUrl,

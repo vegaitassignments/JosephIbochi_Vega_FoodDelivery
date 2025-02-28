@@ -19,12 +19,13 @@ public class QueryHandler : IRequestHandler<Query, BaseResponse>
             .ToListAsync(cancellationToken);
 
         var data = restaurant.Select( r => new GetRestaurantDTO(
+            r.Id,
             r.Name,
             r.Latitude,
             r.Longitude,
             r.Courier.Name,
             r.Courier.PhoneNumber,
-            r.isEngaged
+            r.IsAvailable
         )).ToList();
 
         return new BaseResponse {

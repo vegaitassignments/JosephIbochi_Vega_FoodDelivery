@@ -5,7 +5,8 @@ public record RegisterDTO(
     string Email,
     string Password,
     double? Latitude,
-    double? Longitude
+    double? Longitude,
+    bool isAdmin = false
 );
 
 public class RegisterDTOValidator : AbstractValidator<RegisterDTO>

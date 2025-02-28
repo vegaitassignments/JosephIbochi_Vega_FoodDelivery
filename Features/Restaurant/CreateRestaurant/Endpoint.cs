@@ -11,7 +11,7 @@ public class Endpoint : ICarterModule
     {
         app.MapPost(
             "/restaurants", 
-            // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")] 
             async (ISender sender, IValidator<CreateRestaurantDTO> validator, [FromBody] CreateRestaurantDTO requestData
         ) => {
                 var validationResult = await validator.ValidateAsync(requestData);

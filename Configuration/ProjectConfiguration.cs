@@ -4,6 +4,8 @@ using System.Text;
 using FoodDelivery.Data;
 using FoodDelivery.Entities;
 using FoodDelivery.Middleware.GlobalExceptionMiddleware;
+using Hangfire;
+using Hangfire.MySql;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,8 @@ public static class ProjectConfiguration
         var secretKey =  jwtSettings.GetValue<string>("Key");
         var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? config.GetConnectionString("DefaultConnection");
         
+        services.AddHttpContextAccessor();
+
         services.AddDbContext<ApplicationDbContext>(options => {
             options.UseMySql(
                 connectionString,
@@ -30,6 +34,17 @@ public static class ProjectConfiguration
             );
         });
 
+        services.AddHangfire(config =>
+        config.UseStorage(new MySqlStorage(
+            connectionString,
+            new MySqlStorageOptions
+            {
+                QueuePollInterval = TimeSpan.FromSeconds(15), // Adjust based on your needs
+                TablesPrefix = "Hangfire_" // Optional prefix for tables
+        })));
+        services.AddHangfireServer();
+        
+          
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
         services.AddCarter();
         services.AddValidatorsFromAssembly(assembly);
@@ -57,7 +72,9 @@ public static class ProjectConfiguration
 
         services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireRole("Admin")));
 
-        services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+        services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options => {
+            // options.User.RequireUniqueEmail = true;
+        })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 

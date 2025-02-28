@@ -8,7 +8,7 @@ public class Endpoint : ICarterModule
         app.MapGet(
             "/orders/{id}", 
             [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async (ISender sender, int id) => {
-                return Results.Ok();
+                return Results.Ok(await sender.Send(new Query {OrderId = id}));
             })
             .WithName("GetAnOrder")
             .WithTags("Order")

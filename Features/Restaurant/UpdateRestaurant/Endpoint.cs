@@ -9,7 +9,7 @@ public class Endpoint : ICarterModule
     {
         app.MapPut(
             "/restaurants/{id}", 
-            // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")] 
             async (ISender sender, IValidator<UpdateRestaurantDTO> validator, int id, [FromBody] UpdateRestaurantDTO requestData) => {
                 var validationResult = await validator.ValidateAsync(requestData);
                 if (validationResult.IsValid) {

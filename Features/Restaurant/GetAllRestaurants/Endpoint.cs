@@ -7,17 +7,18 @@ public class Endpoint : ICarterModule
     {
         app.MapGet(
             "/restaurants", 
-            // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]  
             async (ISender sender) => {
                 return Results.Ok(await sender.Send(new Query()));
-            })
-            .WithName("GetAllRestaurants")
-            .WithTags("Restaurant")
-            .WithOpenApi(operation => new(operation) {
-                Summary = "Get all restaurants",
-                OperationId = "GetAllRestaurants",
-                Description = "Returns all restaurants in the restaurant chain"
-            });
+            }
+        )
+        .WithName("GetAllRestaurants")
+        .WithTags("Restaurant")
+        .WithOpenApi(operation => new(operation) {
+            Summary = "Get all restaurants",
+            OperationId = "GetAllRestaurants",
+            Description = "Returns all restaurants in the restaurant chain"
+        });
     }
 }
 

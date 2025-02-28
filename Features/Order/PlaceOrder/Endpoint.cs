@@ -7,17 +7,17 @@ public class Endpoint : ICarterModule
     {
         app.MapPost(
             "/orders", 
-            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async (ISender sender) => {
-                return Results.Ok();
-            })
-            .WithName("PlaceOrder")
-            .WithTags("Order")
-            .WithOpenApi(operation => new(operation) {
-                Summary = "Place an order",
-                OperationId = "PlaceOrder",
-                Description = "Alloes a user to place an order"
-            })
-            .Produces(StatusCodes.Status400BadRequest)
-            .Produces(StatusCodes.Status200OK);
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            async (ISender sender, PlaceOrderDTO requestData) => {
+                return Results.Ok(await sender.Send(new Command {requestData = requestData}));
+            }
+        )
+        .WithName("PlaceOrder")
+        .WithTags("Order")
+        .WithOpenApi(operation => new(operation) {
+            Summary = "Place an order",
+            OperationId = "PlaceOrder",
+            Description = "Allows a user to place an order"
+        });
     }
 }

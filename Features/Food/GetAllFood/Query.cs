@@ -61,6 +61,7 @@ public class QueryHandler : IRequestHandler<Query, BaseResponse>
 
         var foodDTOs = foods
             .Select(f => new FoodDTO(
+                f.Id,
                 f.Name,
                 f.Price,
                 f.ImageUrl,

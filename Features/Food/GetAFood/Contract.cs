@@ -1,6 +1,7 @@
 namespace FoodDelivery.Features.Food.GetAFood;
 
 public record FoodDTO(
+    int Id,
     string Name,
     decimal Price,
     string? ImageUrl,

@@ -7,7 +7,7 @@ public class Endpoint : ICarterModule
     {
         app.MapGet(
             "/foods/{id}", 
-            // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
             async (ISender sender, int id) => {
                 return Results.Ok(await sender.Send(new Query {foodId = id}));
             }

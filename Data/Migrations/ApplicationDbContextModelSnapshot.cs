@@ -36,7 +36,6 @@ namespace FoodDelivery.Data.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
@@ -223,8 +222,11 @@ namespace FoodDelivery.Data.Migrations
 
             modelBuilder.Entity("FoodDelivery.Entities.OrderItem", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("FoodId")
                         .HasColumnType("int");
@@ -232,12 +234,17 @@ namespace FoodDelivery.Data.Migrations
                     b.Property<decimal>("ItemPrice")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("Id");
 
                     b.HasIndex("FoodId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
                 });
@@ -250,6 +257,9 @@ namespace FoodDelivery.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("IsLockedUntil")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("double");
 
@@ -259,9 +269,6 @@ namespace FoodDelivery.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<bool>("isEngaged")
-                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 

@@ -21,7 +21,7 @@ public class Endpoint : ICarterModule
         .WithName("ForgotPassword")
         .WithTags("Auth")
         .WithOpenApi(operation => new(operation) {
-            Summary = "Allows a user request a reset link",
+            Summary = "Forgot password",
             OperationId = "ForgotPassword",
             Description = ""
         });

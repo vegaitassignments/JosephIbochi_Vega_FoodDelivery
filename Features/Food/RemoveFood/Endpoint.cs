@@ -7,7 +7,7 @@ public class Endpoint : ICarterModule
     {
         app.MapDelete(
             "/foods/{id}", 
-            // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] 
+            [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")] 
             async (ISender sender, int id) => {
                 return Results.Ok(await sender.Send(new Command {foodId = id}));
             }

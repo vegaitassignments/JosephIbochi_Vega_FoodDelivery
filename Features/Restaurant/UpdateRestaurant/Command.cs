@@ -38,8 +38,6 @@ public class CommandHandler : IRequestHandler<Command, BaseResponse>
             restaurant.Courier.PhoneNumber = updateData.CourierPhoneNumber;
         if (!string.IsNullOrEmpty(updateData.CourierPhoneNumber))
             restaurant.Courier.PhoneNumber = updateData.CourierPhoneNumber;
-        if (updateData.isEngaged.HasValue)
-            restaurant.isEngaged = updateData.isEngaged.Value;
 
         await _context.SaveChangesAsync(cancellationToken);
 

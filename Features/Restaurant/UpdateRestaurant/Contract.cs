@@ -5,8 +5,7 @@ public record UpdateRestaurantDTO(
     double? Latitude,
     double? Longitude,
     string? CourierName,
-    string? CourierPhoneNumber,
-    bool? isEngaged
+    string? CourierPhoneNumber
 );
 
 public class UpdateRestaurantValidator: AbstractValidator<UpdateRestaurantDTO>
@@ -22,9 +21,5 @@ public class UpdateRestaurantValidator: AbstractValidator<UpdateRestaurantDTO>
         RuleFor(x => x.CourierPhoneNumber)
             .Matches(@"^\+?\d{10,15}$").When(x => !string.IsNullOrEmpty(x.CourierPhoneNumber))
             .WithMessage("Invalid phone number format.");
-        RuleFor(x => x.isEngaged)
-            .NotNull()
-            .WithMessage("isEngaged must be true or false.")
-            .When(x => x.isEngaged.HasValue);
     }
 }

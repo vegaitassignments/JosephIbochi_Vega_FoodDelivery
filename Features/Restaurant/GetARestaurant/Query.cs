@@ -24,12 +24,13 @@ public class QueryHandler : IRequestHandler<Query, BaseResponse>
         }
 
         var data = new GetRestaurantDTO(
+            restaurant.Id,
             restaurant.Name,
             restaurant.Latitude,
             restaurant.Longitude,
             restaurant.Courier.Name,
             restaurant.Courier.PhoneNumber,
-            restaurant.isEngaged
+            restaurant.IsAvailable
         );
 
         return new BaseResponse {
