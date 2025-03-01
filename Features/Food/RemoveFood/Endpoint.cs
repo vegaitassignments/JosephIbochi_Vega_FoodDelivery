@@ -1,4 +1,3 @@
-
 namespace FoodDelivery.Features.Food.RemoveFood;
 
 public class Endpoint : ICarterModule
@@ -8,18 +7,52 @@ public class Endpoint : ICarterModule
         app.MapDelete(
             "/foods/{id}", 
             [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")] 
-            async (ISender sender, int id) => {
-                return Results.Ok(await sender.Send(new Command {foodId = id}));
+            async (ISender sender, int id) =>
+            {
+                return Results.Ok(await sender.Send(new Command { foodId = id }));
             }
         )
         .WithName("RemoveFood")
         .WithTags("Food")
-        .WithOpenApi(operation => new(operation) {
-            Summary = "Remove food",
-            OperationId = "RemoveFood",
-            Description = "Remove food from a menu"
+        .WithOpenApi(operation =>
+        {
+            operation.Summary = "Remove food";
+            operation.OperationId = "RemoveFood";
+            operation.Description = "Removes a food item from the menu. Only admins can perform this action.";
+
+            operation.Responses["200"] = new OpenApiResponse
+            {
+                Description = "Food successfully deleted",
+                Content =
+                {
+                    ["application/json"] = new OpenApiMediaType
+                    {
+                        Example = new OpenApiObject
+                        {
+                            ["status"] = new OpenApiBoolean(true),
+                            ["message"] = new OpenApiString("Food successfully deleted")
+                        }
+                    }
+                }
+            };
+
+            operation.Responses["404"] = new OpenApiResponse
+            {
+                Description = "Food not found",
+                Content =
+                {
+                    ["application/json"] = new OpenApiMediaType
+                    {
+                        Example = new OpenApiObject
+                        {
+                            ["status"] = new OpenApiBoolean(false),
+                            ["message"] = new OpenApiString("Food not found")
+                        }
+                    }
+                }
+            };
+
+            return operation;
         });
     }
 }
-
-// 404 200

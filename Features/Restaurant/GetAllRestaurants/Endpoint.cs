@@ -14,12 +14,19 @@ public class Endpoint : ICarterModule
         )
         .WithName("GetAllRestaurants")
         .WithTags("Restaurant")
-        .WithOpenApi(operation => new(operation) {
-            Summary = "Get all restaurants",
-            OperationId = "GetAllRestaurants",
-            Description = "Returns all restaurants in the restaurant chain"
+        .WithOpenApi(operation =>
+        {
+            operation.Summary = "Get all restaurants";
+            operation.OperationId = "GetAllRestaurants";
+            operation.Description = "Returns all restaurants in the restaurant chain.";
+
+            operation.Responses["200"] = new OpenApiResponse
+            {
+                Description = "List of all restaurants",
+            };
+
+            return operation;
         });
+
     }
 }
-
-// 200

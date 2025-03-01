@@ -39,8 +39,8 @@ public static class ProjectConfiguration
             connectionString,
             new MySqlStorageOptions
             {
-                QueuePollInterval = TimeSpan.FromSeconds(15), // Adjust based on your needs
-                TablesPrefix = "Hangfire_" // Optional prefix for tables
+                QueuePollInterval = TimeSpan.FromSeconds(15),
+                TablesPrefix = "Hangfire_"
         })));
         services.AddHangfireServer();
         

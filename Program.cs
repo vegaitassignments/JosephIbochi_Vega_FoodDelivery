@@ -36,6 +36,7 @@ builder.Services.AddSwaggerGen(options => {
 builder.Services.AddProjectConfiguration(builder.Configuration, builder);
 
 var app = builder.Build();
+await SeedData.SeedDataAsync(app.Services, app.Configuration);
 
 using (var scope = app.Services.CreateScope())
 {

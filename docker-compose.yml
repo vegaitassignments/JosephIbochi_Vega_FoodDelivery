@@ -20,9 +20,3 @@ services:
             - MYSQL_DATABASE: "FoodDeliveryDb"
         ports:
             - "3306:3306"
-
-    maildev:
-        image: maildev/maildev
-        ports:
-        - "1080:80"  # Web UI for viewing emails
-        - "1025:25"  # SMTP server

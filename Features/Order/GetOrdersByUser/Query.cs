@@ -58,8 +58,5 @@ public class QueryHandler : IRequestHandler<Query, BaseResponse>
             Status = true
 
         };
-
-        
-
     }
 }

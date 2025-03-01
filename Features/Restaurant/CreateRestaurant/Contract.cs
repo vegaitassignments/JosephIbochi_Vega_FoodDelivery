@@ -25,14 +25,3 @@ public class CreateRestaurantValidator: AbstractValidator<CreateRestaurantDTO>
             .Matches(@"^\+?\d{10,15}$").WithMessage("Invalid phone number format.");
     }
 }
-
-// public class CourierValidator : AbstractValidator<CreateCourier>
-// {
-//     public CourierValidator()
-//     {
-//         RuleFor(x => x.Name).NotEmpty().WithMessage("Courier name is required.");
-//         RuleFor(x => x.PhoneNumber)
-//             .NotEmpty().WithMessage("Phone number is required.")
-//             .Matches(@"^\+?\d{10,15}$").WithMessage("Invalid phone number format.");
-//     }
-// }
