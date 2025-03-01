@@ -1,77 +1,86 @@
-# Food Delivery Web API
+# Food Delivery API
 
 ## Overview
-This project is a food delivery web application built with C# and ASP.NET Core, using MySQL as the database and Docker for containerized deployment. The application allows users to browse restaurants, place orders, and rate food items.
+This is a food delivery API that facilitates a restaurant chain, enabling seamless online food ordering and delivery. The system efficiently coordinates between restaurants, couriers, and customers to ensure a smooth ordering and delivery experience.
 
-## Prerequisites
-Ensure you have the following installed before running the application:
+Each restaurant in the chain has a fixed courier responsible for deliveries, with a set delivery time of **15 minutes** regardless of location. The API provides functionalities for user authentication, restaurant management, food ordering, and more.
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/)
-- [Docker](https://www.docker.com/)
-- [MySQL](https://www.mysql.com/) (if running locally)
-- [Git](https://git-scm.com/) (to clone the repository)
+## Tech Stack
+- **Backend:** .NET 8, ASP.NET Core
+- **Database:** MySQL
+- **Authentication:** JWT-based authentication
+- **Containerization:** Docker
+- **ORM:** Entity Framework Core
+- **Authorization:** Identity Roles
+- **API Documentation:** Postman
 
-## Running the Application
+## Running the Project with Docker
+Ensure you have **Docker** installed before proceeding.
 
-### Running with Docker
-
-1. **Clone the repository:**
+### Steps to Run:
+1. Clone the repository:
    ```sh
-   git clone <repository_url>
-   cd FoodDelivery
+   git clone https://github.com/your-repo/food-delivery-api.git
+   cd food-delivery-api
    ```
-
-2. **Build and start the containers:**
+2. Build and run the application with Docker:
    ```sh
    docker-compose up --build
    ```
-   This will:
-   - Pull the required MySQL image
-   - Set up the database
-   - Build the application image
-   - Run the API and database containers
+3. The API will be accessible at `http://localhost:5000` (or the configured port).
 
-3. **Access the API:**
-   - The API will be available at `http://localhost:5000`
+**Note:** No need to manually run migrations; the application handles this inside Docker.
 
-4. **Stopping the application:**
-   ```sh
-   docker-compose down
-   ```
-   This stops and removes the containers but keeps the database data intact.
-
-### Running Locally
-
-1. **Set up the MySQL database manually:**
-   - Ensure MySQL is installed and running on your system.
-   - Create a database named `FoodDeliveryDB`.
-   - Update the connection string in `appsettings.json`:
-     ```json
-     "ConnectionStrings": {
-       "DefaultConnection": "server=localhost;database=FoodDeliveryDB;user=root;password=yourpassword"
-     }
-     ```
-
-2. **Apply database migrations:**
-   ```sh
-   dotnet ef database update
-   ```
-
-3. **Run the application:**
+## Running the Project Locally (Optional)
+If you prefer running the application outside Docker, follow these steps:
+1. Ensure you have **.NET 8 SDK** and **MySQL** installed.
+2. Configure the `appsettings.json` file with your MySQL connection string.
+3. Run the project:
    ```sh
    dotnet run
    ```
-   - The API will be available at `http://localhost:5000`.
 
-4. **Stopping the application:**
-   - Press `CTRL+C` to stop the server.
+## Authentication Endpoints
+- `POST /auth/register` - Register a new user
+- `POST /auth/login` - User login
+- `POST /auth/add-admin` - Add an admin (Admin-only access required)
+- `POST /auth/forgot-password` - Request a password reset token
+- `POST /auth/reset-password` - Reset password using the token
 
-## Additional Comments
+### Default Admin Login
+```json
+{
+  "Email": "someadminx345@fooddelivery.com",
+  "Password": "r6sff@73&Y@&@QWER19R8"
+}
+```
 
-- If running with Docker, ensure no other services are using port `3306` to avoid conflicts.
-- If you encounter database connection issues, try restarting Docker and running `docker-compose up --build` again.
-- To remove all Docker containers and images (use with caution):
-  ```sh
-  docker system prune -a
-  ```
-- If needed, you can modify environment variables such as database credentials in `docker-compose.yml`.
+## Restaurant Endpoints
+- `POST /restaurants` - Create a restaurant
+- `GET /restaurants` - Get all restaurants
+- `GET /restaurants/{id}` - Get a restaurant by ID
+- `PUT /restaurants/{id}` - Update a restaurant
+- `DELETE /restaurants/{id}` - Delete a restaurant
+- `GET /restaurants/{id}/orders` - Get orders for a restaurant
+
+## Food Endpoints
+- `POST /foods` - Add a food item
+- `GET /foods` - Get all food items
+- `GET /foods/{id}` - Get a food item by ID
+- `PUT /foods/{id}` - Update a food item
+- `DELETE /foods/{id}` - Remove a food item
+- `POST /foods/{id}/rate` - Rate a food item
+
+## Order Endpoints
+- `POST /orders` - Place an order
+- `GET /orders` - Get all orders
+- `GET /orders/{id}` - Get a single order
+- `GET /orders/users/{id}` - Get orders by a user
+- `POST /orders/{id}/cancel` - Cancel an order
+
+## Limitations
+- No **email provider** is used for password resets, only token-based reset.
+- No **third-party** services are used for location handling.
+
+---
+This API is optimized for seamless food delivery within a restaurant chain. 🚀

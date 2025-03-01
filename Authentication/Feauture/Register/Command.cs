@@ -45,7 +45,6 @@ public class CommandHandler : IRequestHandler<Command, BaseResponse>
             {
                 throw new FoodDeliveryForbiddenException("You are not authorized to create an admin");
             }
-            // _logger.LogWarning($"Admin account created: {data.Email}");
         }
         
         var user = new ApplicationUser {
