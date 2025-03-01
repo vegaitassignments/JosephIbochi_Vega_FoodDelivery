@@ -20,21 +20,25 @@ Ensure you have **Docker** installed before proceeding.
 ### Steps to Run:
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/food-delivery-api.git
-   cd food-delivery-api
+   git clone [https://github.com/your-repo/food-delivery-api.git](https://github.com/JosephJohncross/JosephIbochi_Vega_FoodDelivery.git) .
    ```
 2. Build and run the application with Docker:
    ```sh
    docker-compose up --build
    ```
-3. The API will be accessible at `http://localhost:5000`
+3. The API will be accessible at `http://localhost:5000/swagger`
 
 **Note:** No need to manually run migrations; the application handles this inside Docker.
 
 ## Running the Project Locally (Optional)
 If you prefer running the application outside Docker, follow these steps:
 1. Ensure you have **.NET 8 SDK** and **MySQL** installed.
-3. Run the project:
+2. Change the DefaultConnection string present in the appsettings.Development.json file based off your mysql local configuration
+3. Run the code below to update your database
+   ```sh
+   dotnet ef database update
+   ```
+5. Run the project:
    ```sh
    dotnet run
    ```
@@ -82,7 +86,7 @@ If you prefer running the application outside Docker, follow these steps:
 - No **third-party** services are used for location handling.
 
 ## Worthy to note
-For this task, i had to push both my appsettings.Development.json file which contains some configuration information. But in an ideal production setting, i would not do this, due to security reasons
+For this task, i had to push my appsettings.Development.json file which contains some configuration information. But in an ideal production setting, i would not do this, due to security reasons, but would rather use environment variables or secret manager
 
 ---
 This API is optimized for seamless food delivery within a restaurant chain. 🚀
