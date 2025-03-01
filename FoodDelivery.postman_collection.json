@@ -175,7 +175,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"isAdmin\": \"<boolean>\"\n}",
+									"raw": "{\n  \"name\": \"John Dee\",\n  \"email\": \"johndee@gmail.com\",\n  \"password\": \"Johncross@1111\",\n  \"latitude\": 1.34,\n  \"longitude\": 34.67\n}",
 									"options": {
 										"raw": {
 											"headerFamily": "json",
@@ -269,7 +269,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"isAdmin\": \"<boolean>\"\n}",
+											"raw": "{\n  \"name\": \"John Dee\",\n  \"email\": \"johndee@gmail.com\",\n  \"password\": \"Wes@1111\",\n  \"latitude\": 1.34,\n  \"longitude\": 34.67\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -299,58 +299,6 @@
 									],
 									"cookie": [],
 									"body": "{\n  \"example\": {\n    \"status\": false,\n    \"message\": \"User registration failed\",\n    \"validationErrors\": [\n      \"Email is required.\",\n      \"Password must be at least 8 characters long.\"\n    ]\n  }\n}"
-								},
-								{
-									"name": "Unauthorized to create an admin account",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/json"
-											},
-											{
-												"key": "Accept",
-												"value": "application/problem+json"
-											},
-											{
-												"key": "Authorization",
-												"value": "<API Key>",
-												"description": "Added as a part of security scheme: apikey"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"isAdmin\": \"<boolean>\"\n}",
-											"options": {
-												"raw": {
-													"headerFamily": "json",
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/auth/register",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"auth",
-												"register"
-											]
-										}
-									},
-									"status": "Forbidden",
-									"code": 403,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/problem+json"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"title\": \"Forbidden\",\n    \"status\": 403,\n    \"detail\": \"You are not authorized to create an admin.\"\n}"
 								}
 							]
 						}
@@ -651,6 +599,187 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "add-admin",
+					"item": [
+						{
+							"name": "Add admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGQ1ODVkLWI0N2MtNDFlZC04ZTNhLWVkNGUxMzNiYjU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc0MTAzMTA2Nn0.aU9I9J9ZEenQqzsIiUVrh3cmgqrSXoh9HxmPj8WB020"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"AddPd\",\n  \"email\": \"ads@dd.com\",\n  \"password\": \"fruitys@1111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/add-admin",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"add-admin"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Add admin",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGQ1ODVkLWI0N2MtNDFlZC04ZTNhLWVkNGUxMzNiYjU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc0MTAzMTA2Nn0.aU9I9J9ZEenQqzsIiUVrh3cmgqrSXoh9HxmPj8WB020"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"AddPd\",\n  \"email\": \"ads@dd.com\",\n  \"password\": \"fruitys@1111\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/add-admin",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"add-admin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n  \"status\": true,\r\n  \"message\": \"Admin successfully created\"\r\n}"
+								},
+								{
+									"name": "validation errors",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGQ1ODVkLWI0N2MtNDFlZC04ZTNhLWVkNGUxMzNiYjU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc0MTAzMTA2Nn0.aU9I9J9ZEenQqzsIiUVrh3cmgqrSXoh9HxmPj8WB020"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"AddPd\",\n  \"email\": \"adsdd.com\",\n  \"password\": \"fruitys@1111\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/add-admin",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"add-admin"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n  \"status\": false,\r\n  \"validationErrors\": [\r\n    \"Email is required.\",\r\n    \"Password must be at least 8 characters long.\"\r\n  ]\r\n}"
+								},
+								{
+									"name": "unauthorized to create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGQ1ODVkLWI0N2MtNDFlZC04ZTNhLWVkNGUxMzNiYjU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc0MTAzMTA2Nn0.aU9I9J9ZEenQqzsIiUVrh3cmgqrSXoh9HxmPj8WB020"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"AddPd\",\n  \"email\": \"ads@dd.com\",\n  \"password\": \"fruitys@1111\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/add-admin",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"add-admin"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
 				}
 			]
 		},
@@ -679,7 +808,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"comment\": \"Hello \",\n  \"rating\": 0\n}",
+											"raw": "{\n  \"comment\": \"Super splendid\",\n  \"rating\": 3\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -688,21 +817,14 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/foods/:id/rate",
+											"raw": "{{baseUrl}}/foods/3/rate",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"foods",
-												":id",
+												"3",
 												"rate"
-											],
-											"variable": [
-												{
-													"key": "id",
-													"value": "<integer>",
-													"description": "(Required) "
-												}
 											]
 										},
 										"description": "Allows a user to rate and comment on a food item."
@@ -1247,7 +1369,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "<integer>",
+											"value": "1",
 											"description": "(Required) "
 										}
 									]
@@ -1359,7 +1481,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/foods?name=&category=&minPrice=&maxPrice=&minRating=&pageSize=10&page=1&commentToShow=1",
+							"raw": "{{baseUrl}}/foods?pageSize=10&page=1&commentToShow=1",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1369,23 +1491,28 @@
 							"query": [
 								{
 									"key": "name",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "category",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "minPrice",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "maxPrice",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "minRating",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "pageSize",
@@ -1420,7 +1547,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/foods?name=&category=&minPrice=&maxPrice=&minRating=&pageSize=10&page=1&commentToShow=1",
+									"raw": "{{baseUrl}}/foods?minRating=&pageSize=10&page=1&commentToShow=1",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1430,19 +1557,23 @@
 									"query": [
 										{
 											"key": "name",
-											"value": ""
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "category",
-											"value": ""
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "minPrice",
-											"value": ""
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "maxPrice",
-											"value": ""
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "minRating",
@@ -1493,7 +1624,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"price\": \"<double>\",\n  \"imageUrl\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+							"raw": "{\n  \"name\": \"Chicken\",\n  \"category\": \"Chicken\",\n  \"price\": 23,\n  \"imageUrl\": \"httpa://hello.com\",\n  \"description\": \"Food successfully added to the menu\"\n}",
 							"options": {
 								"raw": {
 									"headerFamily": "json",
@@ -1738,7 +1869,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "<integer>",
+													"value": "1",
 													"description": "(Required) "
 												}
 											]
@@ -2539,7 +2670,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"courierName\": \"<string>\",\n  \"courierPhoneNumber\": \"<string>\"\n}",
+									"raw": "{\n  \"name\": \"New Restaurant Name\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.006,\n  \"courierName\": \"John Doe\",\n  \"courierPhoneNumber\": \"+12345678901\"\n}",
 									"options": {
 										"raw": {
 											"headerFamily": "json",
@@ -2548,20 +2679,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/restaurants/:id",
+									"raw": "{{baseUrl}}/restaurants/1",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"restaurants",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "<integer>",
-											"description": "(Required) "
-										}
+										"1"
 									]
 								},
 								"description": "Allows admin to update a restaurant."
@@ -2754,20 +2878,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/restaurants/:id",
+									"raw": "{{baseUrl}}/restaurants/1",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"restaurants",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "<integer>",
-											"description": "(Required) "
-										}
+										"1"
 									]
 								},
 								"description": "Returns restaurant details by ID."
@@ -2872,20 +2989,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/restaurants/:id",
+									"raw": "{{baseUrl}}/restaurants/2",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"restaurants",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "<integer>",
-											"description": "(Required) The ID of the restaurant to delete."
-										}
+										"2"
 									]
 								},
 								"description": "Allows an admin to delete a restaurant by ID."
@@ -3044,7 +3154,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"courier\": {\n    \"name\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  }\n}",
+							"raw": "{\n  \"name\": \"Pizza Palace\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.006,\n  \"courier\": {\n    \"name\": \"John Doe\",\n    \"phoneNumber\": \"+1234567890\"\n  }\n}",
 							"options": {
 								"raw": {
 									"headerFamily": "json",
@@ -3173,25 +3283,37 @@
 		}
 	],
 	"auth": {
-		"type": "apikey",
-		"apikey": [
+		"type": "bearer",
+		"bearer": [
 			{
-				"key": "key",
-				"value": "Authorization",
-				"type": "string"
-			},
-			{
-				"key": "value",
-				"value": "{{apiKey}}",
-				"type": "string"
-			},
-			{
-				"key": "in",
-				"value": "header",
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjA4ZGQ1ODVkLWI0N2MtNDFlZC04ZTNhLWVkNGUxMzNiYjU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzb21lYWRtaW54MzQ1QGZvb2RkZWxpdmVyeS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc0MTAzMTA2Nn0.aU9I9J9ZEenQqzsIiUVrh3cmgqrSXoh9HxmPj8WB020",
 				"type": "string"
 			}
 		]
 	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "baseUrl",

@@ -27,14 +27,13 @@ Ensure you have **Docker** installed before proceeding.
    ```sh
    docker-compose up --build
    ```
-3. The API will be accessible at `http://localhost:5000` (or the configured port).
+3. The API will be accessible at `http://localhost:5000`
 
 **Note:** No need to manually run migrations; the application handles this inside Docker.
 
 ## Running the Project Locally (Optional)
 If you prefer running the application outside Docker, follow these steps:
 1. Ensure you have **.NET 8 SDK** and **MySQL** installed.
-2. Configure the `appsettings.json` file with your MySQL connection string.
 3. Run the project:
    ```sh
    dotnet run
@@ -81,6 +80,9 @@ If you prefer running the application outside Docker, follow these steps:
 ## Limitations
 - No **email provider** is used for password resets, only token-based reset.
 - No **third-party** services are used for location handling.
+
+## Worthy to note
+For this task, i had to push both my appsettings.Development.json file which contains some configuration information. But in an ideal production setting, i would not do this, due to security reasons
 
 ---
 This API is optimized for seamless food delivery within a restaurant chain. 🚀

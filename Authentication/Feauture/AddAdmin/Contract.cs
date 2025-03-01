@@ -1,16 +1,14 @@
-namespace FoodDelivery.Authentication.Feauture.Register;
+namespace FoodDelivery.Authentication.Feauture.AddAdmin;
 
-public record RegisterDTO(
+public record AddAdminDTO(
     string Name,
     string Email,
-    string Password,
-    double Latitude,
-    double Longitude
+    string Password
 );
 
-public class RegisterDTOValidator : AbstractValidator<RegisterDTO>
+public class AddAdminDTOValidator : AbstractValidator<AddAdminDTO>
 {
-    public RegisterDTOValidator()
+    public AddAdminDTOValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required.")
@@ -28,15 +26,5 @@ public class RegisterDTOValidator : AbstractValidator<RegisterDTO>
             .Matches(@"[a-z]").WithMessage("Password must contain at least one lowercase letter.")
             .Matches(@"\d").WithMessage("Password must contain at least one number.")
             .Matches(@"[!@#$%^&*(),.?\:{}|<>]").WithMessage("Password must contain at least one special character.");
-
-        RuleFor(x => x.Latitude)
-            .NotEqual(0)
-            .InclusiveBetween(-90, 90)
-            .WithMessage("Latitude must be between -90 and 90.");
-
-        RuleFor(x => x.Longitude)
-            .NotEqual(0)
-            .InclusiveBetween(-180, 180)
-            .WithMessage("Longitude must be between -180 and 180.");
     }
 }

@@ -9,22 +9,7 @@ public class Endpoint : ICarterModule
             [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
             async (ISender sender, int id) =>
             {
-                var result = await sender.Send(new Query { foodId = id });
-
-                if (result == null)
-                {
-                    return Results.BadRequest(new BaseResponse
-                    {
-                        Status = false,
-                        Message = "Food not found"
-                    });
-                }
-
-                return Results.Ok(new BaseResponse
-                {
-                    Data = result,
-                    Status = true
-                });
+                return Results.Ok(await sender.Send(new Query { foodId = id }));
             }
         )
         .WithName("GetAFood")
